@@ -5,3 +5,7 @@
 *.war
 *.ear
 /nbproject/private/
+/build/
+/dist/
+/bate-papo-servidor/nbproject/private/
+/bate-papo-cliente/nbproject/private/
