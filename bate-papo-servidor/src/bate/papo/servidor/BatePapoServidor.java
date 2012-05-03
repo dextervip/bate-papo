@@ -29,15 +29,14 @@ public class BatePapoServidor {
     public Socket escutar() {
         Socket cliente = null;
         try{
-            System.out.println("Servidor aguardando clientes...");
-            cliente = this.server.accept();
-            System.out.println("Cliente conectado");
-            System.out.println("IP: "+cliente.getInetAddress().getHostAddress());
-            System.out.println("Hostname: "+cliente.getInetAddress().getHostName());
-
-            DataInputStream entrada = new DataInputStream(cliente.getInputStream());
-            while(true)
-            System.out.println(entrada.readUTF());
+            while(true){
+                Thread t = new Thread(new ProtocoloChat(this.server.accept()));
+                t.start();
+                Threads.addThread(t);
+                System.out.println("Number of Threads:"+ Thread.activeCount());
+            }
+            //System.out.println("Servidor aguardando clientes...");
+            //cliente = this.server.accept();
 
         }catch(Exception e){
             e.printStackTrace();
