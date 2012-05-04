@@ -29,14 +29,11 @@ public class BatePapoServidor {
         Socket cliente = null;
         try {
             while (true) {
-
                 Cliente c = new Cliente(this.server.accept());
                 c.start();
                 Clientes.addCliente(c);
                 System.out.println("Números de Clientes:" + Clientes.clientes.size());
             }
-            //System.out.println("Servidor aguardando clientes...");
-            //cliente = this.server.accept();
 
         } catch (Exception e) {
             e.printStackTrace();
