@@ -1,8 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package bate.papo.servidor;
+
+import java.io.DataInputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  *
@@ -10,10 +10,41 @@ package bate.papo.servidor;
  */
 public class BatePapoServidor {
 
-    /**
-     * @param args the command line arguments
-     */
+    ServerSocket server;
+    //final int port = 5588;
+    final int port = 8080;
+
+    public BatePapoServidor() {
+        System.out.println("Iniciando Servidor");
+        try {
+            this.server = new ServerSocket(this.port);
+            System.out.println("Servidor iniciado na porta: " + this.port);
+            this.escutar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Socket escutar() {
+        Socket cliente = null;
+        try {
+            while (true) {
+
+                Cliente c = new Cliente(this.server.accept());
+                c.start();
+                Clientes.addCliente(c);
+                System.out.println("Números de Clientes:" + Clientes.clientes.size());
+            }
+            //System.out.println("Servidor aguardando clientes...");
+            //cliente = this.server.accept();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cliente;
+    }
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        new BatePapoServidor();
     }
 }
