@@ -1,11 +1,17 @@
 package bate.papo.servidor;
 
 /**
- *
+ * Classe que trata o protocolo
  * @author Rafael
  */
 public class ProtocoloChat {
-
+    
+    /**
+     * Processa a mensagem recebida do cliente de acordo com o protocolo
+     * @param c Cliente que enviou a mensagem
+     * @param msg Mensagem enviada pelo cliente
+     * @throws Exception 
+     */
     public void process(Cliente c, String msg) throws Exception {
         System.out.println(c.getUsername() + ": " + msg);
         if (msg.startsWith("USER")) {
@@ -25,7 +31,7 @@ public class ProtocoloChat {
             }
             c.enviar("NAMES " + names);
         } else {
-            throw new Exception("Invalid Command");
+            c.enviar("Invalid Command");
         }
 
     }

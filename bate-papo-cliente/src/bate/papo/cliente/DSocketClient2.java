@@ -61,6 +61,10 @@ public class DSocketClient2 {
             dsaida.flush();
             dsaida.writeUTF("MSG tommaaaaaa");
             dsaida.flush();
+            dsaida.writeUTF("MSG noob");
+            dsaida.flush();
+            dsaida.writeUTF("LOL");
+            dsaida.flush();
             dsaida.writeUTF("NAMES");
             dsaida.flush();
             while (true) {
