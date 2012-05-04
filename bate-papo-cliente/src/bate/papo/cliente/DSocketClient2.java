@@ -57,9 +57,11 @@ public class DSocketClient2 {
             DataOutputStream dsaida = new DataOutputStream(this.client.getOutputStream());
             DataInputStream entrada = new DataInputStream(this.client.getInputStream());
 
-            dsaida.writeUTF("USER joao");
+            dsaida.writeUTF("USER pedro");
             dsaida.flush();
             dsaida.writeUTF("MSG tommaaaaaa");
+            dsaida.flush();
+            dsaida.writeUTF("NAMES");
             dsaida.flush();
             while (true) {
                 System.out.println(entrada.readUTF());
