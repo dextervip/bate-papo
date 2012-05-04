@@ -18,27 +18,27 @@ public class BatePapoServidor {
         System.out.println("Iniciando Servidor");
         try {
             this.server = new ServerSocket(this.port);
-            System.out.println("Servidor iniciado na porta: "+this.port);
+            System.out.println("Servidor iniciado na porta: " + this.port);
             this.escutar();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
+
     public Socket escutar() {
         Socket cliente = null;
-        try{
-            while(true){
-                Thread t = new Thread(new ProtocoloChat(this.server.accept()));
-                t.start();
-                Threads.addThread(t);
-                System.out.println("Number of Threads:"+ Thread.activeCount());
+        try {
+            while (true) {
+
+                Cliente c = new Cliente(this.server.accept());
+                c.start();
+                Clientes.addCliente(c);
+                System.out.println("Números de Clientes:" + Clientes.clientes.size());
             }
             //System.out.println("Servidor aguardando clientes...");
             //cliente = this.server.accept();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return cliente;
