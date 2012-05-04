@@ -1,8 +1,12 @@
 package bate.papo.servidor;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,11 +15,9 @@ import java.util.ArrayList;
 public class Cliente extends Thread {
 
     Socket cliente;
-    
     private String username;
     private String ip;
     private String hostname;
-    
     private ArrayList<String> entrada;
     private ArrayList<String> saida;
 
@@ -25,25 +27,31 @@ public class Cliente extends Thread {
 
     public void process() {
         try {
-            DataInputStream entrada = new DataInputStream(cliente.getInputStream());
-            System.out.println(this.getUsername() + " " + entrada.readUTF());
+            ProtocoloChat pc = new ProtocoloChat();
+            pc.process(this, this.ler());
         } catch (Exception e) {
             e.printStackTrace();
-            if(e.getMessage().equalsIgnoreCase("Connection reset")){
+            if (e.getMessage().equalsIgnoreCase("Connection reset")) {
                 Clientes.removeCliente(this);
                 this.stop();
                 this.destroy();
+                System.out.println("Um cliente foi desconectado");
             }
         }
     }
-    
-    public void enviar(){
-        
+
+    public String ler() throws IOException {
+        DataInputStream entrada = new DataInputStream(cliente.getInputStream());
+        String input = entrada.readUTF();
+        return input;
     }
-    public void ler(){
-        
+
+    public void enviar(String msg) throws IOException {
+        DataOutputStream saida = new DataOutputStream(cliente.getOutputStream());
+        saida.writeUTF(msg);
+        saida.flush();
     }
-    
+
     public String getHostname() {
         return hostname;
     }
@@ -72,7 +80,7 @@ public class Cliente extends Thread {
     public void run() {
         this.setIp(this.cliente.getInetAddress().getHostAddress());
         this.setHostname(this.cliente.getInetAddress().getHostName());
-        this.setUsername("guest"+System.identityHashCode(this));
+        this.setUsername("guest" + System.identityHashCode(this));
         while (true) {
             this.process();
         }
