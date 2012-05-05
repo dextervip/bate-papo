@@ -20,8 +20,10 @@ public class ProtocoloChat {
             emissorMsg.enviar("OK_USERNAME " + emissorMsg.getUsername() + ":");
         } else if (msg.startsWith("MSG")) {
             String msgArray[] = msg.split(" ");
+            msgArray[0] = "";
+            String newMsg = Utils.arrayToString2(msgArray, " ");
             for (int i = 0; i < Clientes.clientes.size(); i++) {
-                Clientes.clientes.get(i).enviar("MSG_SENDED " + emissorMsg.getUsername() + " " + msgArray[1]);
+                Clientes.clientes.get(i).enviar("MSG_SENDED " + emissorMsg.getUsername() + " " + newMsg);
             }
             //c.enviar("MSG_SENDED " + c.getUsername() + " " + msgArray[1]);
         } else if (msg.startsWith("NAMES")) {
