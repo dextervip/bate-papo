@@ -8,20 +8,20 @@ public class ProtocoloChat {
     
     /**
      * Processa a mensagem recebida do cliente de acordo com o protocolo
-     * @param c Cliente que enviou a mensagem
+     * @param emissorMsg Cliente que enviou a mensagem
      * @param msg Mensagem enviada pelo cliente
      * @throws Exception 
      */
-    public void process(Cliente c, String msg) throws Exception {
-        System.out.println(c.getUsername() + ": " + msg);
+    public void process(Cliente emissorMsg, String msg) throws Exception {
+        System.out.println(emissorMsg.getUsername() + ": " + msg);
         if (msg.startsWith("USER")) {
             String msgArray[] = msg.split(" ");
-            c.setUsername(msgArray[1]);
-            c.enviar("OK_USERNAME " + c.getUsername() + ":");
+            emissorMsg.setUsername(msgArray[1]);
+            emissorMsg.enviar("OK_USERNAME " + emissorMsg.getUsername() + ":");
         } else if (msg.startsWith("MSG")) {
             String msgArray[] = msg.split(" ");
             for (int i = 0; i < Clientes.clientes.size(); i++) {
-                Clientes.clientes.get(i).enviar("MSG_SENDED " + c.getUsername() + " " + msgArray[1]);
+                Clientes.clientes.get(i).enviar("MSG_SENDED " + emissorMsg.getUsername() + " " + msgArray[1]);
             }
             //c.enviar("MSG_SENDED " + c.getUsername() + " " + msgArray[1]);
         } else if (msg.startsWith("NAMES")) {
@@ -29,9 +29,9 @@ public class ProtocoloChat {
             for (int i = 0; i < Clientes.clientes.size(); i++) {
                 names += Clientes.clientes.get(i).getUsername() + " ";
             }
-            c.enviar("NAMES " + names);
+            emissorMsg.enviar("NAMES " + names);
         } else {
-            c.enviar("Invalid Command");
+            emissorMsg.enviar("Invalid Command");
         }
 
     }
