@@ -1,10 +1,9 @@
 package bate.papo.cliente;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
-
 /**
  *
  * @author Marcelo
@@ -14,9 +13,9 @@ public class Layout extends javax.swing.JFrame {
     /**
      * Creates new form Layout
      */
-    
     public Layout() {
         initComponents();
+        new LerMensagens().start();
     }
 
     /**
@@ -76,12 +75,33 @@ public class Layout extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_okActionPerformed
-       String texto = jTF_mensagem.getText();
-       Protocolo protocolo = new Protocolo();
-       protocolo.process(texto);
-       
-       
+        String texto = jTF_mensagem.getText();
+        Protocolo protocolo = new Protocolo();
+        protocolo.process(texto);
+        jTF_mensagem.setText("");
+
     }//GEN-LAST:event_jB_okActionPerformed
+
+    private class LerMensagens extends Thread {
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(500);
+                    
+                    for (int i = 0; i < Mensagem.filaMsgEntrada.size(); i++) {
+                        String msg = Mensagem.filaMsgEntrada.get(i);
+                        jTextArea.append(msg+"\n");
+                        Mensagem.filaMsgEntrada.remove(i);
+                    }
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -123,6 +143,8 @@ public class Layout extends javax.swing.JFrame {
                 new Layout().setVisible(true);
             }
         });
+        
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_ok;

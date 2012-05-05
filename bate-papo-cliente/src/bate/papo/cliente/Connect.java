@@ -3,6 +3,8 @@ package bate.papo.cliente;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sun.net.ConnectionResetException;
 
 /*
@@ -20,8 +22,6 @@ public class Connect extends Thread {
     private int porta;
     private DataOutputStream dsaida;
     private DataInputStream entrada;
-    
-    public ArrayList<String> filaMsg = new ArrayList<String>();
 
     public Connect(String ip, int porta) {
         this.ip = ip;
@@ -53,18 +53,22 @@ public class Connect extends Thread {
 //            dsaida.flush();
 //            dsaida.writeUTF("NAMES");
 //            dsaida.flush();
-            
+            new ReadInput().start();
             while (true) {
-                System.out.println("loop");
-                if(this.filaMsg.size() > 0){
+                //System.out.println("loop");
+                Thread.sleep(500);
+                if (Mensagem.filaMsgSaida.size() > 0) {
                     System.out.println("Caiu na lista");
-                    for (int i = 0; i < filaMsg.size(); i++) {
-                        String string = filaMsg.get(i);
+                    for (int i = 0; i < Mensagem.filaMsgSaida.size(); i++) {
+                        String string = Mensagem.filaMsgSaida.get(i);
                         this.enviar(string);
+                        Mensagem.filaMsgSaida.remove(i);
                     }
                 }
-                
-                System.out.println(entrada.readUTF());
+//                if (entrada) {
+//
+//                    System.out.println(entrada.readUTF());
+//                }
             }
 
         } catch (Exception e) {
@@ -93,5 +97,21 @@ public class Connect extends Thread {
     public void run() {
         this.conectar();
 
+    }
+
+    private class ReadInput extends Thread {
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    String msg = entrada.readUTF();
+                    System.out.println(msg);
+                    Mensagem.filaMsgEntrada.add(msg);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

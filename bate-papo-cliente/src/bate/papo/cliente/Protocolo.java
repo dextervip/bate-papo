@@ -116,7 +116,7 @@ public class Protocolo {
             connect.start();
 
         } else {
-            connect.filaMsg.add(texto);
+            Mensagem.filaMsgSaida.add(texto);
         }
     }
 }
