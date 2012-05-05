@@ -53,7 +53,9 @@ public class Connect extends Thread {
 //            dsaida.flush();
 //            dsaida.writeUTF("NAMES");
 //            dsaida.flush();
+            
             while (true) {
+                System.out.println("loop");
                 if(this.filaMsg.size() > 0){
                     System.out.println("Caiu na lista");
                     for (int i = 0; i < filaMsg.size(); i++) {
