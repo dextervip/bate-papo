@@ -61,6 +61,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTF_mensagem">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTF_mensagemKeyPressed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

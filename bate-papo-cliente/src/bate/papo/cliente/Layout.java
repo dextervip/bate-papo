@@ -1,5 +1,7 @@
 package bate.papo.cliente;
 
+import java.awt.event.KeyEvent;
+
 /*
  * To change this template, choose Tools | Templates and open the template in
  * the editor.
@@ -41,6 +43,12 @@ public class Layout extends javax.swing.JFrame {
             }
         });
 
+        jTF_mensagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTF_mensagemKeyPressed(evt);
+            }
+        });
+
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
         jScrollPane1.setViewportView(jTextArea);
@@ -75,13 +83,23 @@ public class Layout extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_okActionPerformed
+         this.enviarMensagem();       
+
+    }//GEN-LAST:event_jB_okActionPerformed
+
+    private void jTF_mensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_mensagemKeyPressed
+       int key =  evt.getKeyCode();
+        if (key == KeyEvent.VK_ENTER) {  
+            this.enviarMensagem();  
+        }
+    }//GEN-LAST:event_jTF_mensagemKeyPressed
+
+    public void enviarMensagem(){
         String texto = jTF_mensagem.getText();
         Protocolo protocolo = new Protocolo();
         protocolo.process(texto);
         jTF_mensagem.setText("");
-
-    }//GEN-LAST:event_jB_okActionPerformed
-
+    }
     private class LerMensagens extends Thread {
 
         @Override
