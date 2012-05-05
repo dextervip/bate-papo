@@ -4,16 +4,20 @@
  */
 package bate.papo.cliente;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Marcelo
  */
 public class Protocolo {
-    
+
     private String comando;
     private String resposta;
     private String SERVER = "SERVER";
-    private String USER ="USER";
+    private String USER = "USER";
     private String MSG = "MSG";
     private String OK_USERNAME = "OK_USERNAME";
     private String ERR_INVALIDUSERNAME = "ERR_INVALIDUSERNAME";
@@ -26,6 +30,7 @@ public class Protocolo {
     private String PRIVMSG_SENDED = "PRIVMSG_SENDED";
     private String NAMES = "NAMES";
     private String QUIT = "QUIT";
+    Connect connect;
 
     public String getMSG() {
         return MSG;
@@ -38,8 +43,6 @@ public class Protocolo {
     public String getUSER() {
         return USER;
     }
-    
-    
 
     public String getERR_ALREADYREGISTRED() {
         return ERR_ALREADYREGISTRED;
@@ -85,7 +88,6 @@ public class Protocolo {
         return QUIT;
     }
 
-    
     public String getComando() {
         return comando;
     }
@@ -101,8 +103,20 @@ public class Protocolo {
     public void setResposta(String resposta) {
         this.resposta = resposta;
     }
-    
-    
-    
-    
+
+    public void process(String texto) {
+
+        if (texto.startsWith("SERVER")) {
+
+            String vetor[] = texto.split(" ");
+            String ip = vetor[1];
+            String porta = vetor[2];
+
+            connect = new Connect(ip, Integer.parseInt(porta));
+            connect.start();
+
+        } else {
+            connect.filaMsg.add(texto);
+        }
+    }
 }
