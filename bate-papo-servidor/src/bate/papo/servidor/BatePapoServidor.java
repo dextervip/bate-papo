@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- *
+ * Classe para servidor de batepapo
  * @author Rafael
  */
 public class BatePapoServidor {
@@ -24,7 +24,10 @@ public class BatePapoServidor {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Faz o servidor escutar os clientes e jogar o cliente em uma thread
+     * @return Socket cliente
+     */
     public Socket escutar() {
         Socket cliente = null;
         try {
