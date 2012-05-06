@@ -9,8 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Rafael
+ * Classe que representa um conexão do cliente com o servidor
  */
 public class Cliente extends Thread {
 
@@ -24,7 +23,10 @@ public class Cliente extends Thread {
     public Cliente(Socket cliente) {
         this.cliente = cliente;
     }
-
+    /**
+     * Realiza a leitura de mensagens e passa para a classe ProcotoChat interpretar
+     * @return void
+     */
     public void process() {
         try {
             ProtocoloChat pc = new ProtocoloChat();
@@ -39,13 +41,21 @@ public class Cliente extends Thread {
             }
         }
     }
-
+    /**
+     * Espera por uma mensagem do cliente
+     * @return mensagem enviada pelo cliente
+     * @throws IOException 
+     */
     public String ler() throws IOException {
         DataInputStream entrada = new DataInputStream(cliente.getInputStream());
         String input = entrada.readUTF();
         return input;
     }
-
+    /**
+     * Envia uma mensagem para cliente
+     * @param msg
+     * @throws IOException 
+     */
     public void enviar(String msg) throws IOException {
         DataOutputStream saida = new DataOutputStream(cliente.getOutputStream());
         saida.writeUTF(msg);
@@ -84,7 +94,7 @@ public class Cliente extends Thread {
     
     @Override
     /**
-     * Método 
+     * Recupera IP, Hostname, gera um nome aleatorio e manda uma mensagem de boas vindas ao cliente.
      */
     public void run() {
         this.setIp(this.cliente.getInetAddress().getHostAddress());
@@ -98,9 +108,5 @@ public class Cliente extends Thread {
         while (true) {
             this.process();
         }
-    }
-
-    public void sair() {
-        //this.destroy();
     }
 }

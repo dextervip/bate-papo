@@ -1,15 +1,12 @@
 package bate.papo.servidor;
 
 /**
- * Classe que trata o protocolo
- *
- * @author Rafael
+ * Classe que trata o protocolo do chat
  */
 public class ProtocoloChat {
 
     /**
      * Processa a mensagem recebida do cliente de acordo com o protocolo
-     *
      * @param emissorMsg Cliente que enviou a mensagem
      * @param msg Mensagem enviada pelo cliente
      * @throws Exception
@@ -76,7 +73,6 @@ public class ProtocoloChat {
                 String msgSaida = Utils.arrayToString(msgArray, " ");
                 Clientes.clientes.get(i).enviar("QUIT "+emissorMsg.getUsername()+ " "+msgSaida);
             }
-            emissorMsg.sair();
         } else  {
             emissorMsg.enviar("Invalid Command");
         }
