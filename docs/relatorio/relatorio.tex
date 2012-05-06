@@ -27,7 +27,7 @@
 
 \local{Alegrete - RS, Brasil}
 
-\data{05 de Maio de 2012}
+\data{06 de Maio de 2012}
 
 \capa
 
@@ -67,7 +67,26 @@ O documento também contem um manual de desenvolver, para fins de correção do 
 	desse modo iniciaremos a interface gráfica na qual vai ser possível começar a utilização do chat.
 	\end{enumerate}
 	
-	\section{Configuração}		
+	\section{Configuração}	
+	Para se conectar ao servidor, deverá ser escrito na interface gráfica que abrimos anteriormente o comando (SERVER ip porta),onde o SERVER é o comando para conectar ao servidor,ip é o ip da maquina que se encontra o servidor inicializado (no nosso caso localhost) e porta seria a porta na qual o servidor esta configurado para ser utilizado no caso (8080). 
+	após este comando, você deverá receber a mensagem do servidor de boas vindas. 	
+
+	Finalizando essa primeira etapa, passamos a etapa de configuração do nosso nickname (o apelido que utilizaremos para interagir com os demais participantes do chat), para isso digitaremos o seguinte comando:
+	\begin{itemize}
+		\item USER nome	
+	\end{itemize}
+	onde USER é o comando para especificar que gostaria de mudar de nick e nome é o nome no qual escolhi.
+
+	Possiveis problemas que podem aparecer:
+	\begin{enumerate}
+		
+		\item OK_USERNAME caso o nome seja aceito
+		\item ERR_INVALIDUSERNAME caso o nome do usuario seja invalido
+		\item ERR_NEEDMOREPARAMS caso você não tenha digitado o nome
+		\item ERR_ALREADYREGISTRED caso o nome digitado já esteja na lista.	
+		
+	\end{enumerate}
+	
 	\section{Utilização}		
 		
 
@@ -77,11 +96,11 @@ O documento também contem um manual de desenvolver, para fins de correção do 
 \section{Diagrama de Classes}	
 
 \begin{figure}[htp]
-\begin{center}
-\includegraphics[width=300px]{jbpm_overview}
-\caption{Diagrama de Classes}
-\label{fig:jbpmOverview}
-\end{center}
+	\begin{center}
+		\includegraphics[width=300px]{jbpm_overview}
+		\caption{Diagrama de Classes}
+		\label{fig:jbpmOverview}
+	\end{center}
 \end{figure}
 \FloatBarrier
 
@@ -89,7 +108,7 @@ O documento também contem um manual de desenvolver, para fins de correção do 
 A linguagem utilizada de apoio para desenvolvimento da solução do trabalho proposto foi o java, porque alem de ele ser multiplataforma,ou seja, rodar em diversos sistemas operacionais ele tambem possui muitos tratamentos na parte de sockets que é uma classe utilizada na implementação da solução, na parte de comunicação entre um cliente e outro.
 
 \section{Protocolo}		
-
+O protocolo escolhido para ser implementado foi o TCP/IP pois ele é um protocolo confiavel, ou seja, as mensagens do chat nao serão perdidas embora possam demorar um certo tempo para chegar, alem de possuir controle de fluxo e squenciamento das mensagens. 
 
 
 
