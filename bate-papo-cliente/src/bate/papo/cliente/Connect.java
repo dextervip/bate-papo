@@ -2,10 +2,8 @@ package bate.papo.cliente;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.net.ConnectionResetException;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -23,6 +21,7 @@ public class Connect extends Thread {
     private DataOutputStream dsaida;
     private DataInputStream entrada;
 
+    
     public Connect(String ip, int porta) {
         this.ip = ip;
         this.porta = porta;
@@ -43,19 +42,8 @@ public class Connect extends Thread {
             dsaida = new DataOutputStream(this.client.getOutputStream());
             entrada = new DataInputStream(this.client.getInputStream());
 
-//            dsaida.writeUTF("USER pedro");
-//            dsaida.flush();
-//            dsaida.writeUTF("MSG tommaaaaaa");
-//            dsaida.flush();
-//            dsaida.writeUTF("MSG noob");
-//            dsaida.flush();
-//            dsaida.writeUTF("LOL");
-//            dsaida.flush();
-//            dsaida.writeUTF("NAMES");
-//            dsaida.flush();
             new ReadInput().start();
             while (true) {
-                //System.out.println("loop");
                 Thread.sleep(500);
                 if (Mensagem.filaMsgSaida.size() > 0) {
                     System.out.println("Caiu na lista");

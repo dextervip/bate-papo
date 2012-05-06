@@ -142,10 +142,16 @@ public class Layout extends javax.swing.JFrame {
                     
                     for (int i = 0; i < Mensagem.filaMsgEntrada.size(); i++) {
                         String msg = Mensagem.filaMsgEntrada.get(i);
+                        if(msg.startsWith("QUIT")){
+                          jTextArea.append(msg+"\n");
+                          Mensagem.filaMsgEntrada.remove(i);  
+                          dispose();
+                    }    
                         jTextArea.append(msg+"\n");
                         Mensagem.filaMsgEntrada.remove(i);
-                    }
+                      
                     
+                   }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
