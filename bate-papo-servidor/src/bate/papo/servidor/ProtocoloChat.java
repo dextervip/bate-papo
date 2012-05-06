@@ -44,7 +44,26 @@ public class ProtocoloChat {
                 Clientes.clientes.get(i).enviar("MSG_SENDED " + emissorMsg.getUsername() + " " + newMsg);
             }
             //c.enviar("MSG_SENDED " + c.getUsername() + " " + msgArray[1]);
-        } else if (msg.startsWith("NAMES")) {
+        } else  if(msg.startsWith("PRIVMSG")) { 
+            String msgArray[] = msg.split(" ");
+            String username = msgArray[1];
+            for (int i = 0; i < Clientes.clientes.size(); i++) {
+                if(Clientes.clientes.get(i).getUsername().equalsIgnoreCase(msgArray[1])){
+                    msgArray[0] = "";
+                    msgArray[1] = "";
+                    String newMsg = Utils.arrayToString(msgArray, " ");
+                    Clientes.clientes.get(i).enviar("PRIVMSG_SENDED "+ emissorMsg.getUsername()+" "+newMsg);
+                    emissorMsg.enviar("PRIVMSG_SENDED");
+                    return;
+                }
+            }
+            if(msgArray.length > 3){
+               emissorMsg.enviar("NOTEXTTOSEND");
+               return;
+            }
+            emissorMsg.enviar("ERR_NOSUCHNICK " + username);
+            
+        }else if (msg.startsWith("NAMES")) {
             String names = "";
             for (int i = 0; i < Clientes.clientes.size(); i++) {
                 names += Clientes.clientes.get(i).getUsername() + " ";

@@ -9,7 +9,13 @@ package bate.papo.servidor;
  * @author Rafael
  */
 public class Utils {
-
+    
+    /**
+     * Converte um vetor para string
+     * @param a
+     * @param separator
+     * @return string
+     */
     public static String arrayToString(String[] a, String separator) {
         StringBuffer result = new StringBuffer();
         if (a.length > 0) {
@@ -22,6 +28,11 @@ public class Utils {
         return result.toString();
     }
     
+    /**
+     * Valida se o username contem caracteres permitidos
+     * @param username
+     * @return boolean
+     */
     public static boolean validarUsername(String username){
         return true;
     }
