@@ -69,7 +69,15 @@ public class ProtocoloChat {
                 names += Clientes.clientes.get(i).getUsername() + " ";
             }
             emissorMsg.enviar("NAMES " + names);
-        } else {
+        } else if(msg.startsWith("QUIT")){
+            String msgArray[] = msg.split(" ");
+            for (int i = 0; i < Clientes.clientes.size(); i++) {
+                msgArray[0]="";
+                String msgSaida = Utils.arrayToString(msgArray, " ");
+                Clientes.clientes.get(i).enviar("QUIT "+emissorMsg.getUsername()+ " "+msgSaida);
+            }
+            emissorMsg.sair();
+        } else  {
             emissorMsg.enviar("Invalid Command");
         }
         

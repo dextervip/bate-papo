@@ -99,4 +99,8 @@ public class Cliente extends Thread {
             this.process();
         }
     }
+
+    public void sair() {
+        //this.destroy();
+    }
 }
