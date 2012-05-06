@@ -10,7 +10,7 @@ package bate.papo.servidor;
  */
 public class Utils {
 
-    public static String arrayToString2(String[] a, String separator) {
+    public static String arrayToString(String[] a, String separator) {
         StringBuffer result = new StringBuffer();
         if (a.length > 0) {
             result.append(a[0]);
@@ -20,5 +20,9 @@ public class Utils {
             }
         }
         return result.toString();
+    }
+    
+    public static boolean validarUsername(String username){
+        return true;
     }
 }
