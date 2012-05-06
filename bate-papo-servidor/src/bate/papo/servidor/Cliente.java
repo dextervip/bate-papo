@@ -75,7 +75,7 @@ public class Cliente extends Thread {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
     @Override
     public void run() {
         this.setIp(this.cliente.getInetAddress().getHostAddress());

@@ -3,17 +3,16 @@ package bate.papo.cliente;
 import java.awt.event.KeyEvent;
 
 /*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
+ * Tela de Interação do Usuário com o Chat
  */
 /**
  *
- * @author Marcelo
+ * @author Rafael, Rafhael , Marcelo
  */
 public class Layout extends javax.swing.JFrame {
 
     /**
-     * Creates new form Layout
+     * Método Construtor que inicializa os componentes da tela e starta uma thread para  leitura das mensagens
      */
     public Layout() {
         initComponents();
@@ -93,16 +92,26 @@ public class Layout extends javax.swing.JFrame {
             this.enviarMensagem();  
         }
     }//GEN-LAST:event_jTF_mensagemKeyPressed
-
+    /**
+     * Método void, pega mensagem do layout e envia para classe de Protocolo
+     */
     public void enviarMensagem(){
         String texto = jTF_mensagem.getText();
         Protocolo protocolo = new Protocolo();
         protocolo.process(texto);
         jTF_mensagem.setText("");
     }
+    /**
+     * Classe lerMensagens que extende uma thread
+     * 
+     */
     private class LerMensagens extends Thread {
 
         @Override
+        /**
+         * * Classe run 
+         * @return void         
+         */
         public void run() {
             while (true) {
                 try {
