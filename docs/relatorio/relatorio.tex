@@ -17,7 +17,7 @@
 
 \begin{document}
 
-\autor{Rafael Tavares Amorim \par Rafhael \par Marcelo Maia Lopes }
+\autor{Rafael Tavares Amorim \par Rafhael Rodrigues Cunha\par Marcelo Maia Lopes }
 
 \titulo{Redes e Sistemas Distribuídos}
 
@@ -37,53 +37,55 @@
 
 
 \chapter{INTRODUÇÃO}
+Esse Documento tem por objetivo auxiliar o usuário no manuseio do chat, oferecendo ao mesmo um manual do usuário contendo manual de Instalação, configuração e utilização do software.
 
-	\section{Gerenciador de Documentos}
-	
-					
-	\section{jBPM}
-	
-		Para modelagem e execução de um fluxo de trabalho em um gerenciador de documentos, necessita-se de um motor com uma
-		especificação funcionamento padronizada sendo assim uma das possíveis soluções, temos o jBPM que é uma suíte
-		poderosa, nos fornece uma forma robusta e padronizada para a realização destes fluxos de trabalho.
-						
-		
-		
-		
-	\clearpage	
-	\section{Quotero}
-	
-	Quotero é um sistema de gerenciamento de documentos com código fonte aberto, escrito em Java sob licença GNU GPL
-	versão 2. Podemos criar tipos de documentos com campos personalizados ou herdar de outros tipos também, a partir deste
-	documentos podemos criar fluxos de trabalho simples, permitindo aplicar um ou mais fluxos de revisões e aprovações para
-	os documentos por determinado usuários ou grupos. No andamento do processo um ou mais usuários podem editar o
-	documento, preservando sua integridade e reversibilidade com o controle de versões.
-	
-	O acesso é realizado através de um navegador web em um computador desktop, e também há suporte para acesso com uso de
-	um telefone celular. É oferecido um suporte multi idioma para o usuário com traduções em inglês, francês, espanhol e
-	polonês.
-	
-	Através de um plugin, é possível ter integração com Microsoft Office permitindo o usuário criar, abrir e modificar os
-	documentos direto do Office, o plugin trata de controlar as versões trabalhadas e trancar o documento enquanto um
-	usuário estiver editando para manter sempre a integridade dos documentos.
-	
-	Todas informações desta seção foram retiradas da referência \cite{QUOTERO}.
-	
-	
+O documento também contem um manual de desenvolver, para fins de correção do trabalho e curiosidades, possuindo assim diagrama de classes, explicações sucintas sobre a linguagem que foi utilizada, e por fim uma introdução sobre o protocolo usado e o motivo pela escolha do mesmo.
 
 \clearpage
 \chapter{Manual do Usuário}
 
-\section{Instação}		
-\section{Configuração}		
-\section{Utilização}		
+	\section{Instação}	
+	Como apoio a instalação será enviado juntamente com o relatorio os arquivos fontes do projeto e os arquivos já compilados (jar); Para instalar basta apenas copiar os arquivos jars (bate-papo-cliente.jar, bate-papo-servidor.jar) para a pasta desejada, abrir o terminal do seu sistema operacional, como exemplo utilizarei o windows, e fazer os seguintes procedimentos:
+	\begin{enumerate}
+	
+	\item  Navegar ate a pasta aonde você copiou os jars, tanto o bate-papo-servidor quanto o bate-papo-cliente.
+	Lembrando que para navegação utilizamos: 
+	
+	\begin{itemize}
+	\item comando 'cd' - para abrir uma pasta;
+	\item comando 'ls' - para visualizar o que esta dentro de uma pasta;
+	\end{itemize}	
+	
+	\item Quando você chegar até a pasta aonde se encontra esses arquivos, digite java -jar nomedoarquivo.jar
+	no nosso exemplo então ficaria da seguinte maneira:
+	\begin{itemize}
+	\item java - jar bate-papo-servidor.jar
+	\end{itemize}
+	Logo após darmos esse comando será inicializado o nosso servidor no qual receberá as mensagens do chat.
+	
+	\item Após, seguimos no terminal e dessa vez digitamos o seguinte comando: java -jar bate-papo-cliente.jar
+	desse modo iniciaremos a interface gráfica na qual vai ser possível começar a utilização do chat.
+	\end{enumerate}
+	
+	\section{Configuração}		
+	\section{Utilização}		
 		
 
 
 \clearpage
 \chapter{Manual do Desenvolvedor}
-\section{Diagrama de Classes}		
+\section{Diagrama de Classes}	
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=300]{jbpm_overview}
+\caption{Diagrama de Classes}
+\label{fig:jbpmOverview}
+\end{center}
+\end{figure}
+\FloatBarrier
 \section{Linguagem Utilizada}		
+
 \section{Protocolo}		
 
 
@@ -95,6 +97,4 @@
 \nocite{*}
 \bibliographystyle{plain}		
 \bibliography{bibliografia}		
-
-
 \end{document}
