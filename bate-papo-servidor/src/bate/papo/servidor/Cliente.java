@@ -67,16 +67,25 @@ public class Cliente extends Thread {
     public void setIp(String ip) {
         this.ip = ip;
     }
-
+    /**
+     * Método para pegar um username
+     * @return  username
+     */
     public String getUsername() {
         return username;
     }
-
+    /**
+     * Método para alterar um username
+     * @param username 
+     */
     public void setUsername(String username) {
         this.username = username;
     }
     
     @Override
+    /**
+     * Método 
+     */
     public void run() {
         this.setIp(this.cliente.getInetAddress().getHostAddress());
         this.setHostname(this.cliente.getInetAddress().getHostName());
