@@ -48,7 +48,7 @@ public class ProtocoloChat {
             String msgArray[] = msg.split(" ");
             String username = msgArray[1];
             for (int i = 0; i < Clientes.clientes.size(); i++) {
-                if(Clientes.clientes.get(i).getUsername() == msgArray[1]){
+                if(Clientes.clientes.get(i).getUsername().equalsIgnoreCase(msgArray[1])){
                     msgArray[0] = "";
                     msgArray[1] = "";
                     String newMsg = Utils.arrayToString(msgArray, " ");
