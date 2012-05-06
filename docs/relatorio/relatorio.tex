@@ -88,6 +88,7 @@ O documento também contem um manual de desenvolver, para fins de correção do 
 	
 	\section{Utilização}		
 	Após terminarmos a instalação e configuração do nosso chat, agora iremos utiliza-lo o mesmo. A utilização assim como as outras etapas é bem simples e consiste em mandar/receber mensagens.
+	
 	Então, partindo para o prático, para enviarmos uma mensagem para outra pessoa no modo normal, ou seja, todos os demais participantes do chat também veram essa mensagem digitamos o seguinte comando:
 	\begin{itemize}
 		\item MSG mensagem 	
@@ -101,7 +102,15 @@ O documento também contem um manual de desenvolver, para fins de correção do 
 		\item PRIVMSG username\_destino mensagem
 	\end{itemize}
 	Onde PRIVMSG indica que quero enviar uma mensagem do tipo privada, username\_destino é o nick do usuário no qual eu gostaria de enviar a mensagem e mensagem é a minha mensagem propriamente dita.
-
+	
+	Esses seriam nossos comandos básicos para interagir no chat, agora podemos ver uns comandos mais detalhados que nos acrescentam algumas funcionalidades, são eles:
+	
+	\begin{itemize}
+		\item NAMES - Comando utilizado pelos clientes para obter a lista de todos os clientes conectados 
+		naquele momento.
+		\item QUIT [mensagem\_saida] - Comando do cliente para deixar o bate-papo. O servidor deve enviar a informação de saída para todos os demais participantes do bate-papo (inclusive para o próprio cliente que está deixando o programa). Opcionalmente pode ser informada uma mensagem de saída.
+	\end{itemize}
+	Digitando só o comando QUIT eu estarei automaticamente saindo do chat sem avisar nenhum outro usuário, e digitando o comando QUIT mensagem , eu estarei saindo porem antes disso enviarei uma ultima mensagem para os participantes do chat.
 
 \clearpage
 \chapter{Manual do Desenvolvedor}
@@ -109,10 +118,15 @@ O documento também contem um manual de desenvolver, para fins de correção do 
 	
 	\begin{figure}[htp]
 		\begin{center}
-			\includegraphics[width=300px]{jbpm_overview}
-			\caption{Diagrama de Classes}
-			\label{fig:jbpmOverview}
+			\includegraphics[width=500px]{diagramacliente}
+			\caption{Diagrama de Classes package Cliente}
 		\end{center}
+	\end{figure}
+	\begin{figure}[htp2]
+				\begin{center}
+					\includegraphics[width=500px]{diagramaservidor}
+					\caption{Diagrama de Classes package Servidor}
+				\end{center}
 	\end{figure}
 	\FloatBarrier
 	
