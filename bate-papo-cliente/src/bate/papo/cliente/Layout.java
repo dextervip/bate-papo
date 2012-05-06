@@ -53,6 +53,11 @@ public class Layout extends javax.swing.JFrame {
             }
         });
 
+        jTF_mensagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_mensagemActionPerformed(evt);
+            }
+        });
         jTF_mensagem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTF_mensagemKeyPressed(evt);
@@ -111,9 +116,14 @@ public class Layout extends javax.swing.JFrame {
     private void jTF_mensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_mensagemKeyPressed
        int key =  evt.getKeyCode();
         if (key == KeyEvent.VK_ENTER) {  
-            this.enviarMensagem();  
+            this.enviarMensagem();
+            
         }
     }//GEN-LAST:event_jTF_mensagemKeyPressed
+
+    private void jTF_mensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_mensagemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTF_mensagemActionPerformed
     /**
      * Método void, pega mensagem do layout e envia para classe de Protocolo
      */
@@ -122,6 +132,9 @@ public class Layout extends javax.swing.JFrame {
        
         Protocolo protocolo = new Protocolo();
         protocolo.process(texto);
+        if(texto.startsWith("QUIT")){
+            System.exit(0);
+        }
         jTF_mensagem.setText("");
     }
     /**
@@ -142,11 +155,8 @@ public class Layout extends javax.swing.JFrame {
                     
                     for (int i = 0; i < Mensagem.filaMsgEntrada.size(); i++) {
                         String msg = Mensagem.filaMsgEntrada.get(i);
-                        if(msg.startsWith("QUIT")){
-                          jTextArea.append(msg+"\n");
-                          Mensagem.filaMsgEntrada.remove(i);  
-                          dispose();
-                    }    
+                        
+                           
                         jTextArea.append(msg+"\n");
                         Mensagem.filaMsgEntrada.remove(i);
                       
