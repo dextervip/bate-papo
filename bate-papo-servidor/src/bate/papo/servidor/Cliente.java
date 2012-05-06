@@ -90,6 +90,11 @@ public class Cliente extends Thread {
         this.setIp(this.cliente.getInetAddress().getHostAddress());
         this.setHostname(this.cliente.getInetAddress().getHostName());
         this.setUsername("guest" + System.identityHashCode(this));
+        try {
+            this.enviar("Conectado. Bem Vindo ao Chat. Digite USER e seu nome para alterar seu username.");
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         while (true) {
             this.process();
         }
