@@ -3,8 +3,7 @@ package bate.papo.cliente;
 import java.util.ArrayList;
 
 /**
- *
- * @author Rafael
+ *  Classe para armazenar as mensagens que serão enviadas e recebidas 
  */
 public class Mensagem {
     

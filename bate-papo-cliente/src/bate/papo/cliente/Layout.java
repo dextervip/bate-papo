@@ -5,17 +5,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-/*
- * Tela de Interação do Usuário com o Chat
- */
 /**
- *
+ * Tela de Interação do Usuário com o Chat
  * @author Rafael, Rafhael , Marcelo
  */
 public class Layout extends javax.swing.JFrame {
 
     /**
-     * Método Construtor que inicializa os componentes da tela e starta uma thread para  leitura das mensagens
+     * Método Construtor que inicializa os componentes da tela e starta uma thread para leitura das mensagens
      */
     public Layout() {
         initComponents();
@@ -138,16 +135,11 @@ public class Layout extends javax.swing.JFrame {
         jTF_mensagem.setText("");
     }
     /**
-     * Classe lerMensagens que extende uma thread
-     * 
+     * Classe para ler as mensagens da classe Mensagem e exibir no cliente chat
      */
     private class LerMensagens extends Thread {
 
         @Override
-        /**
-         * * Classe run 
-         * @return void         
-         */
         public void run() {
             while (true) {
                 try {
@@ -155,12 +147,8 @@ public class Layout extends javax.swing.JFrame {
                     
                     for (int i = 0; i < Mensagem.filaMsgEntrada.size(); i++) {
                         String msg = Mensagem.filaMsgEntrada.get(i);
-                        
-                           
                         jTextArea.append(msg+"\n");
                         Mensagem.filaMsgEntrada.remove(i);
-                      
-                    
                    }
                 } catch (Exception e) {
                     e.printStackTrace();

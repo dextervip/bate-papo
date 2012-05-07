@@ -1,17 +1,14 @@
 package bate.papo.cliente;
 
-import java.io.*;
-import java.net.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 /**
- *
- * @author Rafael
+ * Classe para conexao com servidor
  */
 public class Connect extends Thread {
 
@@ -21,22 +18,27 @@ public class Connect extends Thread {
     private DataOutputStream dsaida;
     private DataInputStream entrada;
 
-    
     public Connect(String ip, int porta) {
         this.ip = ip;
         this.porta = porta;
     }
 
+    /**
+     * Envia mensagem para servidor
+     *
+     * @param msg
+     * @throws IOException
+     */
     public void enviar(String msg) throws IOException {
         this.dsaida.writeUTF(msg);
         this.dsaida.flush();
 
     }
-
+    /**
+     * Realiza conexao com servidor e espera cliente enviar um mensagem para servidor
+     */
     public void conectar() {
-
         try {
-
             this.client = new Socket(this.ip, this.porta);
             System.out.println("Conectado ao servidor.");
             dsaida = new DataOutputStream(this.client.getOutputStream());
@@ -53,12 +55,7 @@ public class Connect extends Thread {
                         Mensagem.filaMsgSaida.remove(i);
                     }
                 }
-//                if (entrada) {
-//
-//                    System.out.println(entrada.readUTF());
-//                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,7 +83,9 @@ public class Connect extends Thread {
         this.conectar();
 
     }
-
+    /**
+     * Classe que realiza a leitura de mensagem do servidor
+     */
     private class ReadInput extends Thread {
 
         @Override
